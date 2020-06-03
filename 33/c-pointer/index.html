@@ -1,0 +1,990 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#2.2.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>C語言 Pointer 指標 - Willy&#39;s Blog</title>
+  
+    <meta name="keywords" content="C/C++,Pointer">
+  
+  
+    <meta name="description" content="C語言的重要功能之一：指標，以下簡單紀錄">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+
+  <div class='wrapper'>
+    <div class='nav-sub container--flex'>
+      <a class="logo flat-box"></a>
+      <ul class='switcher h-list'>
+        <li><a class="s-comment flat-btn fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc flat-btn fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main container container--flex">
+      
+        
+        <a class="logo flat-box" target="_self" href='/'>
+          
+          
+            <i class='fas fa-home'></i>
+          
+          
+            Willy's Blog
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='h-list'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  
+                    <i class='fas fa-grin fa-fw'></i>
+                  
+                  文章
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                    rel="nofollow"
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  
+                    <i class='fas fa-folder-open fa-fw'></i>
+                  
+                  分類
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                    rel="nofollow"
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  
+                    <i class='fas fa-hashtag fa-fw'></i>
+                  
+                  標籤
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                    rel="nofollow"
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  
+                    <i class='fas fa-archive fa-fw'></i>
+                  
+                  歸檔
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      
+        <div class="m_search">
+          <form name="searchform" class="form u-search-form">
+            <i class="icon fas fa-search fa-fw"></i>
+            <input type="text" class="input u-search-input" placeholder="Search" />
+          </form>
+        </div>
+      
+
+			<ul class='switcher h-list'>
+				
+					<li><a class="s-search flat-btn fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li><a class="s-menu flat-btn fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<ul class="menu-phone navigation white-box">
+  
+  
+    <li>
+      <a class="flat-box" href=/
+        
+        
+        
+          id="home"
+        >
+        
+          <i class='fas fa-grin fa-fw'></i>
+        
+        文章
+      </a>
+    </li>
+  
+    <li>
+      <a class="flat-box" href=/categories/
+        
+          rel="nofollow"
+        
+        
+        
+          id="categories"
+        >
+        
+          <i class='fas fa-folder-open fa-fw'></i>
+        
+        分類
+      </a>
+    </li>
+  
+    <li>
+      <a class="flat-box" href=/tags/
+        
+          rel="nofollow"
+        
+        
+        
+          id="tags"
+        >
+        
+          <i class='fas fa-hashtag fa-fw'></i>
+        
+        標籤
+      </a>
+    </li>
+  
+    <li>
+      <a class="flat-box" href=/archives/
+        
+          rel="nofollow"
+        
+        
+        
+          id="archives"
+        >
+        
+          <i class='fas fa-archive fa-fw'></i>
+        
+        歸檔
+      </a>
+    </li>
+  
+</ul>
+<script>setLoadingBarProgress(40);</script>
+
+
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/33/c-pointer/">
+        C語言 Pointer 指標
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+<div class='new-meta-item author'>
+  <a href="https://willychen.org" target="_blank" rel="nofollow noopener">
+    <img src="/images/avatar.jpg">
+    <p>Willy Chen</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>學習筆記&nbsp;/&nbsp;計算機程式設計</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>2018年1月3日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <p>C語言的重要功能之一：指標，以下簡單紀錄</p>
+<a id="more"></a>
+<ul>
+<li>特色</li>
+</ul>
+<ol>
+<li>傳參考(Call By Reference)</li>
+<li>值是儲存地址(Memory Address)</li>
+</ol>
+<ul>
+<li>宣告(declaration)</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *ptr;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>初始化(initialization)</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">ptr = &amp;num; <span class="comment">//將num所在地址存到變數ptr當中</span></span><br><span class="line"></span><br><span class="line">ptr = <span class="literal">NULL</span>; <span class="comment">//ptr不會指到任何東西</span></span><br><span class="line"></span><br><span class="line">ptr = <span class="number">0</span>; <span class="comment">//和NULL一樣，但建議使用NULL</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>反參考(dereference)</li>
+</ul>
+<p>取得指標指向的記憶體中那個變數所存的值</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">printf</span>(<span class="string">"%d"</span>,*ptr);</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>範例程式</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">  Filename:Pointer1.c</span></span><br><span class="line"><span class="comment">  Author:Willy Chen(willychen.org)</span></span><br><span class="line"><span class="comment">  Date:2018.01.03</span></span><br><span class="line"><span class="comment">*****************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> *ptr = &amp;num;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"ptr: %p\\n"</span>,ptr);  <span class="comment">//Address of num</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"\*ptr: %d\\n"</span>,\*ptr); <span class="comment">//Value of num</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;num: %p\\n"</span>,&amp;num); <span class="comment">//Address of num</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"&amp;\*ptr: %p\\n"</span>,&amp;\*ptr); <span class="comment">//Address of num</span></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ptr: 0x7ffc2dc851fc</span><br><span class="line">*ptr: 0</span><br><span class="line">&amp;num: 0x7ffc2dc851fc</span><br><span class="line">&amp;*ptr: 0x7ffc2dc851fc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>傳地址(call by reference)</li>
+</ul>
+<ol>
+<li>Function的參數都是透過傳值(call by value)</li>
+<li>透過指標，可以「模擬」傳地址(call by reference)</li>
+</ol>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">  Filename:Pointer2.c</span></span><br><span class="line"><span class="comment">  Author:Willy Chen(willychen.org)</span></span><br><span class="line"><span class="comment">  Date:2018.01.03</span></span><br><span class="line"><span class="comment">*****************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> *ptr)</span></span>; <span class="comment">//prototype</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">2</span>;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Origin num: %d\\n"</span>,num);</span><br><span class="line">    square(&amp;num);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"New num: %d\\n"</span>,num);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">square</span><span class="params">(<span class="keyword">int</span> *ptr)</span></span>&#123;</span><br><span class="line">    \*ptr = \*ptr * *ptr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Origin num: <span class="number">2</span></span><br><span class="line">New num: <span class="number">4</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指標與陣列</li>
+</ul>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">  Filename:Pointer3.c</span></span><br><span class="line"><span class="comment">  Author:Willy Chen(willychen.org)</span></span><br><span class="line"><span class="comment">  Date:2018.01.03</span></span><br><span class="line"><span class="comment">*****************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> a\[<span class="number">5</span>\]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">	<span class="keyword">int</span> \*ptr = &amp;a\[<span class="number">0</span>\];  <span class="comment">//也可以寫成 int \*ptr = a;</span></span><br><span class="line">	<span class="keyword">int</span> *ptr2 = <span class="literal">NULL</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"address of a\[0\]:%p\\n"</span>,&amp;a\[<span class="number">0</span>\]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"value of ptr:%p\\n"</span>,ptr);  <span class="comment">//value of ptr = the address of a\[0\]</span></span><br><span class="line"></span><br><span class="line">	ptr += <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"address of a\[2\]:%p\\n"</span>,&amp;a\[<span class="number">2</span>\]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"value of ptr:%p\\n"</span>,ptr);  <span class="comment">//value of ptr = the address of a\[2\]</span></span><br><span class="line"></span><br><span class="line">	ptr2 = &amp;a\[<span class="number">4</span>\];</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"value of ptr2-ptr:%d\\n"</span>,ptr2-ptr);  <span class="comment">//the number of array elements from ptr to ptr2</span></span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">address of a\[0\]:0x7fff77e371d0</span><br><span class="line">value of ptr:0x7fff77e371d0</span><br><span class="line">address of a\[2\]:0x7fff77e371d8</span><br><span class="line">value of ptr:0x7fff77e371d8</span><br><span class="line">value of ptr2-ptr:2</span><br></pre></td></tr></table></figure>
+
+<p>當 ptr 指向a[0]，地址(…1d0)<br>則 ptr+2 會指向a[2]，地址(…1d0) + 2 × 4      ⇐ 乘4是因為1個int佔4個Bytes<br>所以 ptr+2 指向地址(…1d8)，也就是a[2]的地址</p>
+<p>而 ptr2-ptr 會回傳地址差÷4<br>就是 ( (…1e6) - (…1d8)  ) ÷ 4 = 2</p>
+<ul>
+<li>void<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> *ptr;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<ol>
+<li>可以使用void來宣告pointer，此pointer只存地址</li>
+<li>此類pointer不可反參考</li>
+<li>若要反參考，須將此pointer轉型至int等型別</li>
+</ol>
+<ul>
+<li><p>const with pointer</p>
+<ul>
+<li><p>non-constant pointer，non-constant data<br>pointer可以改指其他地址，反參考(dereferenced)可以改存的資料</p>
+</li>
+<li><p>non-constant pointer，constant data<br>pointer可以改指其他地址，但反參考不能改存的資料</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">  Filename:Pointer4.c</span></span><br><span class="line"><span class="comment">  Author:Willy Chen(willychen.org)</span></span><br><span class="line"><span class="comment">  Date:2018.01.04</span></span><br><span class="line"><span class="comment">*****************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printChar</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *Ptr)</span></span>;</span><br><span class="line"><span class="comment">// 等同於 void printChar( char const *Ptr);</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> s\[\]=<span class="string">"This is a test."</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"s:%s\\n"</span>,s);</span><br><span class="line">	printChar(s);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\\n"</span>);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">printChar</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> *Ptr)</span></span>&#123;</span><br><span class="line">	for(; *Ptr != '\\0';Ptr++)&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%c"</span>,*Ptr);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">s:This is a test.</span><br><span class="line">This is a test.</span><br></pre></td></tr></table></figure>
+
+<p>在 printChar 中只有讀取 Ptr 的值，然後修改 Ptr 的指向，並沒有修改 Ptr 所指變數的值<br>若是在 printChar 的 for 迴圈中加個 *Ptr = ‘x’; 之類的<br>compiler 會印出 Error，因為加 const 設定成 read-only了</p>
+</li>
+<li><p>constant pointer，non-constant data<br>pointer永遠指向同一地址，反參考(dereferenced)可以改存的資料<br>宣告一個array時預設的權限：array的名稱恆指向陣列的開頭</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">  Filename:Pointer5.c</span></span><br><span class="line"><span class="comment">  Author:Willy Chen(willychen.org)</span></span><br><span class="line"><span class="comment">  Date:2018.01.05</span></span><br><span class="line"><span class="comment">*****************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">( <span class="keyword">char</span> * <span class="keyword">const</span> Ptr)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">char</span> c = <span class="string">'A'</span>;</span><br><span class="line">	<span class="keyword">char</span> *cptr = &amp;c;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Origin:%c\\n"</span>,*cptr); <span class="comment">//deference</span></span><br><span class="line">	change(cptr);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"Change:%c\\n"</span>,*cptr);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">change</span><span class="params">( <span class="keyword">char</span> * <span class="keyword">const</span> Ptr)</span></span>&#123;</span><br><span class="line">	*Ptr = <span class="string">'B'</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Origin:A</span><br><span class="line">Change:B</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>constant pointer，constant data<br>pointer恆指向同一地址，那個地址中的資料不可用反參考修改<br>基本上只能做讀取的功能</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">read</span><span class="params">( <span class="keyword">const</span> <span class="keyword">char</span> * <span class="keyword">const</span> ptr)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>如傳一個 array 到 Function 中時，Function中只能對此 array 做讀取的動作</p>
+</li>
+<li><p>簡單整理一下<br>當有 const 在 * 左邊時，代表這個 pointer 指向地址存的資料不可更動，如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">char</span> * c;</span><br><span class="line"><span class="keyword">char</span> <span class="keyword">const</span> * c;</span><br></pre></td></tr></table></figure>
+
+<p>當有 const 在 * 右邊時，代表這個 pointer 不可變更指向的地址，如</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">char</span> * <span class="keyword">const</span> c;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>sizeof operator</p>
+<ul>
+<li><p>是一種一元運算子(unary operator)</p>
+</li>
+<li><p>使用 sizeof 讓程式在編譯時取得變數(陣列等等)的 byte 大小</p>
+</li>
+<li><p>範例程式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">  Filename:Pointer6.c</span></span><br><span class="line"><span class="comment">  Author:Willy Chen(willychen.org)</span></span><br><span class="line"><span class="comment">  Date:2018.01.05</span></span><br><span class="line"><span class="comment">*****************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">char</span> y = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">double</span> z = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">char</span> *ptr = &amp;y;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"size of x:%d\\n"</span></span><br><span class="line">		<span class="string">"size of int:%d\\n"</span></span><br><span class="line">		<span class="string">"size of y:%d\\n"</span></span><br><span class="line">		<span class="string">"size of char:%d\\n"</span></span><br><span class="line">		<span class="string">"size of z:%d\\n"</span></span><br><span class="line">		<span class="string">"size of double:%d\\n"</span></span><br><span class="line">		<span class="string">"size of ptr:%d\\n"</span></span><br><span class="line">		<span class="string">"size of char*:%d\\n"</span>,</span><br><span class="line">		<span class="keyword">sizeof</span>(x),<span class="keyword">sizeof</span>(<span class="keyword">int</span>),<span class="keyword">sizeof</span>(y),<span class="keyword">sizeof</span>(<span class="keyword">char</span>),</span><br><span class="line">		<span class="keyword">sizeof</span>(z),<span class="keyword">sizeof</span>(<span class="keyword">double</span>),<span class="keyword">sizeof</span>(ptr),<span class="keyword">sizeof</span>(<span class="keyword">char</span>*)</span><br><span class="line">		);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">size of x:4</span><br><span class="line">size of int:4</span><br><span class="line">size of y:1</span><br><span class="line">size of char:1</span><br><span class="line">size of z:8</span><br><span class="line">size of double:8</span><br><span class="line">size of ptr:8</span><br><span class="line">size of char*:8</span><br></pre></td></tr></table></figure>
+
+<p>結果可以看到存 char* (char的指標)使用了 8 bytes</p>
+</li>
+</ul>
+</li>
+<li><p>Array of pointer</p>
+<ul>
+<li><p>可以宣告一個指標陣列，其中存一些字串(正確來說是存指標)</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">  Filename:Pointer7.c</span></span><br><span class="line"><span class="comment">  Author:Willy Chen(willychen.org)</span></span><br><span class="line"><span class="comment">  Date:2018.01.05</span></span><br><span class="line"><span class="comment">*****************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">char</span> * <span class="built_in">array</span>\[<span class="number">4</span>\] = &#123;<span class="string">"Apple"</span>,<span class="string">"Banana"</span>,<span class="string">"Lemon"</span>,<span class="string">"Orange"</span>&#125;;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"array\[0\]:%s\\n"</span>,<span class="built_in">array</span>\[<span class="number">0</span>\]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"array\[1\]:%s\\n"</span>,<span class="built_in">array</span>\[<span class="number">1</span>\]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\*array\[0\]:%c\\n"</span>,\*<span class="built_in">array</span>\[<span class="number">0</span>\]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"\*array\[1\]:%c\\n"</span>,\*<span class="built_in">array</span>\[<span class="number">1</span>\]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"size of array:%d\\n"</span>,<span class="keyword">sizeof</span>(<span class="built_in">array</span>));</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"elements of array:%d\\n"</span>,<span class="keyword">sizeof</span>(<span class="built_in">array</span>)/<span class="keyword">sizeof</span>(<span class="keyword">char</span>*));</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">array\[0\]:Apple</span><br><span class="line">array\[1\]:Banana</span><br><span class="line">*array\[0\]:A</span><br><span class="line">*array\[1\]:B</span><br><span class="line">size of array:32</span><br><span class="line">elements of array:4</span><br></pre></td></tr></table></figure>
+
+<p>範例程式中array 是一個存有4個指標的陣列<br>第一個指標 array[0] 指向第一個字串第一個字元的地址，也就是”Apple”的’A’<br>第二個指標 array[1] 指向第二個字串第一個字元的地址，也就是”Banana”的’B’<br>所以當反參考 *array[0] 時，會得到 ‘A’<br>反參考 *array[1] 時，會得到 ‘B’</p>
+<p>注意字串 “Apple” 實際上是存 ‘A’ ‘p’ ‘p’ ‘l’ ‘e’ ‘\0’，每個字串後面都有 ‘\0’ (null-terminated character string)</p>
+<p>sizeof(array)會回傳陣列的大小(Bytes)<br>使用 sizeof(array)/sizeof(char<em>) 可以得到 array 的元素個數：4<br>換句話說，前面有得到 指標的大小sizeof(char</em>) 是占用 8 bytes，而 array 有4個元素，所以 array的大小就是 8 × 4 = 32 ，也就是 sizeof(array) 得到的數值</p>
+</li>
+</ul>
+</li>
+<li><p>pointer to function</p>
+<ul>
+<li>剛剛是指到字串的地址，現在換成指到 function 的</li>
+<li>定義： void (*f[3]) (int) = {func1, func2, func3};<ul>
+<li>有三個 function 叫 func1，func2 和 func3，其中他們的回傳值是 void，有一個 int 的參數</li>
+<li>現在把他們放到一個叫 f[3] 的指標陣列當中，f[0]，f[1]，f[2] 都是一個指標</li>
+</ul>
+</li>
+<li>使用： <font color="#dd0000">(</font>*f[element]<font color="#dd0000">)</font> (argument);<ul>
+<li>(*f[element]) 是對指標進行反參考，所以 f[0] 對應 func1，f[1] 對應 func2，f[2] 對應 func3</li>
+<li>(argument) 就是傳參數進去</li>
+</ul>
+</li>
+<li>注意：<strong>上面用紅色標註的括號是不能缺少的，一定要寫</strong></li>
+<li>範例程式<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*****************************************</span></span><br><span class="line"><span class="comment">  Filename:Pointer8.c</span></span><br><span class="line"><span class="comment">  Author:Willy Chen(willychen.org)</span></span><br><span class="line"><span class="comment">  Date:2018.01.05</span></span><br><span class="line"><span class="comment">*****************************************/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func1</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1:%d\\n"</span>,x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func2</span><span class="params">(<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"2:%d\\n"</span>,y);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">func3</span><span class="params">(<span class="keyword">int</span> z)</span></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"3:%d\\n"</span>,z);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">void</span> (*f\[<span class="number">3</span>\]) (<span class="keyword">int</span>) = &#123;func1, func2, func3&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> input = <span class="number">100</span>;</span><br><span class="line">    (*f\[<span class="number">0</span>\])(input);</span><br><span class="line">    (*f\[<span class="number">1</span>\])(input);</span><br><span class="line">    (*f\[<span class="number">2</span>\])(input);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1:100</span><br><span class="line">2:100</span><br><span class="line">3:100</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+
+          
+            <br>
+            
+
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-18T10:16:33+08:00">
+  <a class='notlink'>
+    <i class="fas fa-save fa-fw" aria-hidden="true"></i>
+    <p>更新於2020年3月18日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/c-c/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>C/C++</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/pointer/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Pointer</p></a></div>
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/141/computer-programming-i-assignment-4-hopscotch/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>Computer Programming I Assignment 4 Hopscotch</p>
+                <p class='content'>計算機程式設計1 的作業4 - 跳格子題目簡述
+輸入會給總共要跳幾格
+
+一次可以跳1~4格，只能往前跳
+
+若總共跳10格已內，最多跳7次；總共跳1120格，最多跳17次；總共跳2130格，最多跳...</p>
+              </a>
+            
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 評論</p>
+      
+      
+        <section id="comments">
+          <div id="disqus_thread">
+            <div><i class='fas fa-exclamation-triangle'></i>&nbsp;無法加載Disqus評論系統，請確保您的網絡能夠正常訪問。</div>
+          </div>
+        </section>
+      
+      
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: 'C語言 Pointer 指標',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget grid shadow desktop mobile">
+  
+  <header>
+    
+      <i class="fas fa-map-signs fa-fw" aria-hidden="true"></i><span class='name'>站内導航</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="grid navigation">
+      
+        <a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          文章列表
+        </a>
+      
+        <a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章歸檔
+        </a>
+      
+        <a class="flat-box" title="https://www.github.com/WillyChen123" href="https://www.github.com/WillyChen123"
+          
+          
+          id="https:wwwgithubcomWillyChen123">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          開源項目
+        </a>
+      
+        <a class="flat-box" title="/works/" href="/works/"
+          
+            rel="nofollow"
+          
+          
+          id="works">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          我的作品
+        </a>
+      
+        <a class="flat-box" title="https://github.com/xaoxuu/hexo-theme-volantis/" href="https://github.com/xaoxuu/hexo-theme-volantis/"
+          
+            rel="nofollow"
+          
+          
+          id="https:githubcomxaoxuuhexo-theme-volantis">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          主題文件
+        </a>
+      
+        <a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow\"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          關於本站
+        </a>
+      
+    </div>
+  </div>
+</section>
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分類</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/linux/" href="/categories/linux/"
+            id="categorieslinux"
+            ><div class='name'>Linux</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/linux/tips/" href="/categories/linux/tips/"
+            id="categorieslinuxtips"
+            ><div class='name'>Tips</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/tips/" href="/categories/tips/"
+            id="categoriestips"
+            ><div class='name'>Tips</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/uva/" href="/categories/uva/"
+            id="categoriesuva"
+            ><div class='name'>UVa</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" href="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/"
+            id="categoriesE5ADB8E7BF92E7AD86E8A898"
+            ><div class='name'>學習筆記</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/" href="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/"
+            id="categoriesE5ADB8E7BF92E7AD86E8A898E8A888E7AE97E6A99FE7A88BE5BC8FE8A8ADE8A888"
+            ><div class='name'>計算機程式設計</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>熱門標籤</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/algorithm/" style="font-size: 16px; color: #8b8b8b">Algorithm</a> <a href="/tags/all-pairs-shortest-path/" style="font-size: 14px; color: #999">All-Pairs Shortest Path</a> <a href="/tags/arch-linux/" style="font-size: 18px; color: #7e7e7e">Arch Linux</a> <a href="/tags/assignment/" style="font-size: 20px; color: #707070">Assignment</a> <a href="/tags/basis/" style="font-size: 14px; color: #999">Basis</a> <a href="/tags/binary-tree/" style="font-size: 14px; color: #999">Binary Tree</a> <a href="/tags/bios/" style="font-size: 14px; color: #999">Bios</a> <a href="/tags/c-c/" style="font-size: 24px; color: #555">C/C++</a> <a href="/tags/case-sensitive/" style="font-size: 14px; color: #999">Case Sensitive</a> <a href="/tags/data-structure/" style="font-size: 14px; color: #999">Data Structure</a> <a href="/tags/dynamic-programming/" style="font-size: 14px; color: #999">Dynamic Programming</a> <a href="/tags/edit-distance/" style="font-size: 14px; color: #999">Edit Distance</a> <a href="/tags/floyd%E2%80%93warshall-algorithm/" style="font-size: 14px; color: #999">Floyd–Warshall algorithm</a> <a href="/tags/fn-key/" style="font-size: 14px; color: #999">Fn Key</a> <a href="/tags/full-binary-tree/" style="font-size: 14px; color: #999">Full Binary Tree</a> <a href="/tags/gnome-shell/" style="font-size: 14px; color: #999">Gnome-Shell</a> <a href="/tags/grub/" style="font-size: 14px; color: #999">Grub</a> <a href="/tags/hime/" style="font-size: 14px; color: #999">Hime</a> <a href="/tags/install/" style="font-size: 16px; color: #8b8b8b">Install</a> <a href="/tags/leetcode/" style="font-size: 14px; color: #999">LeetCode</a> <a href="/tags/lenovo-yoga/" style="font-size: 14px; color: #999">Lenovo Yoga</a> <a href="/tags/letter-case/" style="font-size: 14px; color: #999">Letter Case</a> <a href="/tags/linear-algebra/" style="font-size: 14px; color: #999">Linear Algebra</a> <a href="/tags/linked-list/" style="font-size: 14px; color: #999">Linked List</a> <a href="/tags/linux/" style="font-size: 20px; color: #707070">Linux</a> <a href="/tags/longest-common-subsequence/" style="font-size: 14px; color: #999">Longest Common Subsequence</a> <a href="/tags/mlpclassifier/" style="font-size: 14px; color: #999">MLPClassifier</a> <a href="/tags/merge-sort/" style="font-size: 14px; color: #999">Merge Sort</a> <a href="/tags/multilayer-perceptron/" style="font-size: 14px; color: #999">Multilayer Perceptron</a> <a href="/tags/pointer/" style="font-size: 14px; color: #999">Pointer</a> <a href="/tags/scikit-learn/" style="font-size: 14px; color: #999">Scikit-learn</a> <a href="/tags/sort/" style="font-size: 14px; color: #999">Sort</a> <a href="/tags/stack/" style="font-size: 14px; color: #999">Stack</a> <a href="/tags/uva/" style="font-size: 22px; color: #636363">UVa</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">Vim</a> <a href="/tags/xor/" style="font-size: 14px; color: #999">XOR</a> <a href="/tags/yaourt/" style="font-size: 14px; color: #999">Yaourt</a>
+    </div>
+  </section>
+
+
+  
+
+  
+
+  
+    
+    
+  <section class='widget recent_comments desktop'>
+    
+  <header>
+    
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span class='name'>近期評論</span>
+    
+  </header>
+
+
+    <div class="comment pure" style="padding: 8px 16px;">
+      <script type="text/javascript" src="http://willychen99.disqus.com/recent_comments_widget.js?num_items=6&hide_avatars=0&avatar_size=32&excerpt_length=20&hide_mods=0"></script>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="mailto:willy@willychen.org"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/WillyChen123"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div class='copyright'>
+        <p>@2018-2020 By Willy Chen</p>
+
+        </div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作為主題
+        
+      
+    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>
+    var disqus_shortname = 'willychen99';
+    
+      var disqus_url = 'http://www.willychen.org/33/c-pointer/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.1/js/search.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copyed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-clipboard-check');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPYED';
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-exclamation-triangle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+<!-- fancybox -->
+
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("div.fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>

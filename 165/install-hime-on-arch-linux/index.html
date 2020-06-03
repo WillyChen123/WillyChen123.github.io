@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+<head hexo-theme='https://volantis.js.org/#2.2.0'>
+  <meta charset="utf-8">
+  <!-- SEO相关 -->
+  
+    
+  
+  <!-- 渲染优化 -->
+  <meta name="renderer" content="webkit">
+  <meta name="force-rendering" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="HandheldFriendly" content="True" >
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- 页面元数据 -->
+  
+    <title>在 Arch Linux 安裝 Hime - Willy&#39;s Blog</title>
+  
+    <meta name="keywords" content="Linux,Arch Linux,Hime,Install">
+  
+  
+    <meta name="description" content="在之前使用 Ubuntu 時就有使用過 Hime 輸入法
+在使用 Arch Linux 後也會在安裝完系統後安裝這個輸入法
+以下紀錄安裝的過程">
+  
+
+  <!-- feed -->
+  
+
+  <!-- import meta -->
+  
+
+  <!-- link -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.12.1/css/all.min.css">
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+  
+
+  
+
+  
+
+  <!-- import link -->
+  
+
+  
+    
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+  <script>
+    function setLoadingBarProgress(num) {
+      document.getElementById('loading-bar').style.width=num+"%";
+    }
+  </script>
+
+  
+  
+</head>
+
+<body>
+  
+  <div id="loading-bar-wrapper">
+  <div id="loading-bar"></div>
+</div>
+<header class="l_header shadow blur">
+
+  <div class='wrapper'>
+    <div class='nav-sub container--flex'>
+      <a class="logo flat-box"></a>
+      <ul class='switcher h-list'>
+        <li><a class="s-comment flat-btn fas fa-comments fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+          <li><a class="s-toc flat-btn fas fa-list fa-fw" target="_self" href='javascript:void(0)'></a></li>
+        
+      </ul>
+    </div>
+		<div class="nav-main container container--flex">
+      
+        
+        <a class="logo flat-box" target="_self" href='/'>
+          
+          
+            <i class='fas fa-home'></i>
+          
+          
+            Willy's Blog
+          
+          
+        </a>
+      
+
+			<div class='menu navigation'>
+				<ul class='h-list'>
+          
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/
+                  
+                  
+                  
+                    id="home"
+                  >
+                  
+                    <i class='fas fa-grin fa-fw'></i>
+                  
+                  文章
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/categories/
+                  
+                    rel="nofollow"
+                  
+                  
+                  
+                    id="categories"
+                  >
+                  
+                    <i class='fas fa-folder-open fa-fw'></i>
+                  
+                  分類
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/tags/
+                  
+                    rel="nofollow"
+                  
+                  
+                  
+                    id="tags"
+                  >
+                  
+                    <i class='fas fa-hashtag fa-fw'></i>
+                  
+                  標籤
+                </a>
+                
+              </li>
+            
+          
+          
+            
+            
+              <li>
+                <a class="flat-box" href=/archives/
+                  
+                    rel="nofollow"
+                  
+                  
+                  
+                    id="archives"
+                  >
+                  
+                    <i class='fas fa-archive fa-fw'></i>
+                  
+                  歸檔
+                </a>
+                
+              </li>
+            
+          
+          
+				</ul>
+			</div>
+
+      
+        <div class="m_search">
+          <form name="searchform" class="form u-search-form">
+            <i class="icon fas fa-search fa-fw"></i>
+            <input type="text" class="input u-search-input" placeholder="Search" />
+          </form>
+        </div>
+      
+
+			<ul class='switcher h-list'>
+				
+					<li><a class="s-search flat-btn fas fa-search fa-fw" target="_self" href='javascript:void(0)'></a></li>
+				
+				<li><a class="s-menu flat-btn fas fa-bars fa-fw" target="_self" href='javascript:void(0)'></a></li>
+			</ul>
+		</div>
+	</div>
+</header>
+<ul class="menu-phone navigation white-box">
+  
+  
+    <li>
+      <a class="flat-box" href=/
+        
+        
+        
+          id="home"
+        >
+        
+          <i class='fas fa-grin fa-fw'></i>
+        
+        文章
+      </a>
+    </li>
+  
+    <li>
+      <a class="flat-box" href=/categories/
+        
+          rel="nofollow"
+        
+        
+        
+          id="categories"
+        >
+        
+          <i class='fas fa-folder-open fa-fw'></i>
+        
+        分類
+      </a>
+    </li>
+  
+    <li>
+      <a class="flat-box" href=/tags/
+        
+          rel="nofollow"
+        
+        
+        
+          id="tags"
+        >
+        
+          <i class='fas fa-hashtag fa-fw'></i>
+        
+        標籤
+      </a>
+    </li>
+  
+    <li>
+      <a class="flat-box" href=/archives/
+        
+          rel="nofollow"
+        
+        
+        
+          id="archives"
+        >
+        
+          <i class='fas fa-archive fa-fw'></i>
+        
+        歸檔
+      </a>
+    </li>
+  
+</ul>
+<script>setLoadingBarProgress(40);</script>
+
+
+
+  <div class="l_body nocover">
+    <div class='body-wrapper'>
+      
+
+<div class='l_main'>
+  
+
+  
+    <article id="post" class="post white-box shadow article-type-post" itemscope itemprop="blogPost">
+      
+
+
+  <section class='meta'>
+    
+    
+    <div class="meta" id="header-meta">
+      
+        
+  
+    <h1 class="title">
+      <a href="/165/install-hime-on-arch-linux/">
+        在 Arch Linux 安裝 Hime
+      </a>
+    </h1>
+  
+
+
+      
+      <div class='new-meta-box'>
+        
+          
+        
+          
+            
+<div class='new-meta-item author'>
+  <a href="https://willychen.org" target="_blank" rel="nofollow noopener">
+    <img src="/images/avatar.jpg">
+    <p>Willy Chen</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+  
+  <div class='new-meta-item category'>
+    <a href='/categories/linux/' rel="nofollow">
+      <i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>
+      <p>Linux</p>
+    </a>
+  </div>
+
+
+          
+        
+          
+            <div class="new-meta-item date">
+  <a class='notlink'>
+    <i class="fas fa-edit fa-fw" aria-hidden="true"></i>
+    <p>2018年1月31日</p>
+  </a>
+</div>
+
+          
+        
+          
+            
+
+          
+        
+      </div>
+      
+        <hr>
+      
+    </div>
+  </section>
+
+
+      <section class="article typo">
+        <div class="article-entry" itemprop="articleBody">
+          
+          <p>在之前使用 Ubuntu 時就有使用過 Hime 輸入法</p>
+<p>在使用 Arch Linux 後也會在安裝完系統後安裝這個輸入法</p>
+<p>以下紀錄安裝的過程</p>
+<a id="more"></a>
+<p>注意：以下紀錄資料僅供參考，執行前請記得備份資料</p>
+<p>Hime Github : <a href="https://github.com/hime-ime/hime" target="_blank" rel="noopener">https://github.com/hime-ime/hime</a></p>
+<ol>
+<li>安裝 Hime<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="comment"># Package Details : https://aur.archlinux.org/packages/hime-git/</span></span><br><span class="line">$ yaourt -S hime-git</span><br></pre></td></tr></table></figure></li>
+<li>將以下程式碼加入家目錄下的 .xprofile<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ vim ~/.xprofile</span><br><span class="line"></span><br><span class="line">----- .xprofile -----</span><br><span class="line"><span class="built_in">export</span> XIM_PROGRAM=hime</span><br><span class="line"><span class="built_in">export</span> XIM=hime</span><br><span class="line"><span class="built_in">export</span> GTK\_IM\_MODULE=hime</span><br><span class="line"><span class="built_in">export</span> QT\_IM\_MODULE=hime</span><br><span class="line"><span class="built_in">export</span> XMODIFIERS=@im=hime</span><br><span class="line">hime &amp;</span><br><span class="line">---------------------</span><br></pre></td></tr></table></figure></li>
+<li>重新登入並設定 Hime ，完成<br>（找到 Hime 的程式打開應該會有圖形化介面可以設定）</li>
+</ol>
+<hr>
+<p>補充：</p>
+<p>筆者使用 GDM 來管理圖形環境，及使用 Gnome 來作為桌面環境</p>
+<p>本來是預設使用 Xorg 來登入</p>
+<p>但在某一個版本更新後貌似會使用 Wayland 來登入</p>
+<p>導致登入時不會去讀取剛剛設定的 .xprofile 的內容</p>
+<p>Hime 進而無法使用</p>
+<p>筆者測試後找到了兩個暫時的解決方案如下：</p>
+<p>方案一：</p>
+<p>將 .xprofile 的內容複製到 <code>/etc/environment</code> 中（記得要root權限）<br>然後重新登入<br>只是由於我們有設定 <code>GTK\_IM\_MODULE</code><br>不知道為什麼會有一些程式（如 gnome-terminal）無法成功啟動<br>（換句話說，可以把 <code>GTK\_IM\_MODULE</code> 註解或刪除<br>一些程式應該可以正常啟動，只是這些使用 GTK 的程式可能就無法使用 Hime）</p>
+<p>2018.03.30 更新：<br>筆者在 Wayland 測試時<br>無法成功啟動 Hime 輸入法<br>先暫時刪除</p>
+<p>方案二：</p>
+<p>在登入時，右下角有一個齒輪圖案<br>點擊後可以選擇 GNOME on Xorg<br>再登入就可以正常使用 Hime<br>只是 Wayland 的功能就會無法使用</p>
+
+          
+            <br>
+            
+
+          
+        </div>
+        
+          
+
+
+  <section class='meta' id="footer-meta">
+    <div class='new-meta-box'>
+      
+        
+          <div class="new-meta-item date" itemprop="dateUpdated" datetime="2020-03-18T10:17:14+08:00">
+  <a class='notlink'>
+    <i class="fas fa-save fa-fw" aria-hidden="true"></i>
+    <p>更新於2020年3月18日</p>
+  </a>
+</div>
+
+        
+      
+        
+          
+  
+  <div class="new-meta-item meta-tags"><a class="tag" href="/tags/linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Linux</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/arch-linux/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Arch Linux</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/hime/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Hime</p></a></div> <div class="new-meta-item meta-tags"><a class="tag" href="/tags/install/" rel="nofollow"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i><p>Install</p></a></div>
+
+
+        
+      
+    </div>
+  </section>
+
+
+        
+        
+          <div class="prev-next">
+            
+              <a class='prev' href='/194/fix-grub-config-after-resizing-partition/'>
+                <p class='title'><i class="fas fa-chevron-left" aria-hidden="true"></i>在重新分割硬碟後修正grub設定</p>
+                <p class='content'>幾天前透過 Windows 的磁碟管理工具弄了新的分區
+之後重新開機後進入 Grub 選單時出現了以下文字：
+12error: unknown filesystem.grub rescue&gt...</p>
+              </a>
+            
+            
+              <a class='next' href='/167/computer-programming-i-assignment-5-bot-maze/'>
+                <p class='title'>Computer Programming I Assignment 5 Bot Maze<i class="fas fa-chevron-right" aria-hidden="true"></i></p>
+                <p class='content'>計算機程式設計1 的作業5 – 走迷宮題目簡述
+有一4×4迷宮，起點在(0,0)，終點在(3,0)
+
+迷宮中可能會有障礙物
+
+從起點到終點，每一格都需走過剛好一遍
+
+題目輸出
+印出總共有幾種走法...</p>
+              </a>
+            
+          </div>
+        
+      </section>
+    </article>
+  
+
+  
+    <!-- 显示推荐文章和评论 -->
+
+
+
+  <article class="post white-box comments shadow">
+    <section class="article typo">
+      <p ct><i class='fas fa-comments'></i> 評論</p>
+      
+      
+        <section id="comments">
+          <div id="disqus_thread">
+            <div><i class='fas fa-exclamation-triangle'></i>&nbsp;無法加載Disqus評論系統，請確保您的網絡能夠正常訪問。</div>
+          </div>
+        </section>
+      
+      
+      
+      
+    </section>
+  </article>
+
+
+  
+
+
+
+
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+  <script>
+    window.subData = {
+      title: '在 Arch Linux 安裝 Hime',
+      tools: true
+    }
+  </script>
+
+
+</div>
+<aside class='l_side'>
+  
+  
+
+  
+    
+    
+
+
+
+  
+
+  
+    
+    
+
+<section class="widget grid shadow desktop mobile">
+  
+  <header>
+    
+      <i class="fas fa-map-signs fa-fw" aria-hidden="true"></i><span class='name'>站内導航</span>
+    
+  </header>
+
+
+  <div class='content'>
+    <div class="grid navigation">
+      
+        <a class="flat-box" title="/" href="/"
+          
+          
+          id="home">
+          
+            <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+          
+          文章列表
+        </a>
+      
+        <a class="flat-box" title="/archives/" href="/archives/"
+          
+            rel="nofollow"
+          
+          
+          id="archives">
+          
+            <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+          
+          文章歸檔
+        </a>
+      
+        <a class="flat-box" title="https://www.github.com/WillyChen123" href="https://www.github.com/WillyChen123"
+          
+          
+          id="https:wwwgithubcomWillyChen123">
+          
+            <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+          
+          開源項目
+        </a>
+      
+        <a class="flat-box" title="/works/" href="/works/"
+          
+            rel="nofollow"
+          
+          
+          id="works">
+          
+            <i class="fas fa-code-branch fa-fw" aria-hidden="true"></i>
+          
+          我的作品
+        </a>
+      
+        <a class="flat-box" title="https://github.com/xaoxuu/hexo-theme-volantis/" href="https://github.com/xaoxuu/hexo-theme-volantis/"
+          
+            rel="nofollow"
+          
+          
+          id="https:githubcomxaoxuuhexo-theme-volantis">
+          
+            <i class="fas fa-book fa-fw" aria-hidden="true"></i>
+          
+          主題文件
+        </a>
+      
+        <a class="flat-box" title="/about/" href="/about/"
+          
+            rel="nofollow\"
+          
+          
+          id="about">
+          
+            <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+          
+          關於本站
+        </a>
+      
+    </div>
+  </div>
+</section>
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget category shadow desktop">
+    
+  <header>
+    
+      <a href='/blog/categories/'><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i><span class='name'>文章分類</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <ul class="entry navigation">
+        
+          <li><a class="flat-box"
+            title="/categories/linux/" href="/categories/linux/"
+            id="categorieslinux"
+            ><div class='name'>Linux</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/linux/tips/" href="/categories/linux/tips/"
+            id="categorieslinuxtips"
+            ><div class='name'>Tips</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/tips/" href="/categories/tips/"
+            id="categoriestips"
+            ><div class='name'>Tips</div><div class='badge'>(1)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/uva/" href="/categories/uva/"
+            id="categoriesuva"
+            ><div class='name'>UVa</div><div class='badge'>(5)</div></a></li>
+        
+          <li><a class="flat-box"
+            title="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/" href="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/"
+            id="categoriesE5ADB8E7BF92E7AD86E8A898"
+            ><div class='name'>學習筆記</div><div class='badge'>(7)</div></a></li>
+        
+          <li><a class="flat-box child"
+            title="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/" href="/categories/%E5%AD%B8%E7%BF%92%E7%AD%86%E8%A8%98/%E8%A8%88%E7%AE%97%E6%A9%9F%E7%A8%8B%E5%BC%8F%E8%A8%AD%E8%A8%88/"
+            id="categoriesE5ADB8E7BF92E7AD86E8A898E8A888E7AE97E6A99FE7A88BE5BC8FE8A8ADE8A888"
+            ><div class='name'>計算機程式設計</div><div class='badge'>(5)</div></a></li>
+        
+      </ul>
+    </div>
+  </section>
+
+
+  
+
+  
+    
+    
+  
+
+  <section class="widget tagcloud shadow desktop">
+    
+  <header>
+    
+      <a href='/blog/tags/'><i class="fas fa-tags fa-fw" aria-hidden="true"></i><span class='name'>熱門標籤</span></a>
+    
+  </header>
+
+
+    <div class='content'>
+      <a href="/tags/algorithm/" style="font-size: 16px; color: #8b8b8b">Algorithm</a> <a href="/tags/all-pairs-shortest-path/" style="font-size: 14px; color: #999">All-Pairs Shortest Path</a> <a href="/tags/arch-linux/" style="font-size: 18px; color: #7e7e7e">Arch Linux</a> <a href="/tags/assignment/" style="font-size: 20px; color: #707070">Assignment</a> <a href="/tags/basis/" style="font-size: 14px; color: #999">Basis</a> <a href="/tags/binary-tree/" style="font-size: 14px; color: #999">Binary Tree</a> <a href="/tags/bios/" style="font-size: 14px; color: #999">Bios</a> <a href="/tags/c-c/" style="font-size: 24px; color: #555">C/C++</a> <a href="/tags/case-sensitive/" style="font-size: 14px; color: #999">Case Sensitive</a> <a href="/tags/data-structure/" style="font-size: 14px; color: #999">Data Structure</a> <a href="/tags/dynamic-programming/" style="font-size: 14px; color: #999">Dynamic Programming</a> <a href="/tags/edit-distance/" style="font-size: 14px; color: #999">Edit Distance</a> <a href="/tags/floyd%E2%80%93warshall-algorithm/" style="font-size: 14px; color: #999">Floyd–Warshall algorithm</a> <a href="/tags/fn-key/" style="font-size: 14px; color: #999">Fn Key</a> <a href="/tags/full-binary-tree/" style="font-size: 14px; color: #999">Full Binary Tree</a> <a href="/tags/gnome-shell/" style="font-size: 14px; color: #999">Gnome-Shell</a> <a href="/tags/grub/" style="font-size: 14px; color: #999">Grub</a> <a href="/tags/hime/" style="font-size: 14px; color: #999">Hime</a> <a href="/tags/install/" style="font-size: 16px; color: #8b8b8b">Install</a> <a href="/tags/leetcode/" style="font-size: 14px; color: #999">LeetCode</a> <a href="/tags/lenovo-yoga/" style="font-size: 14px; color: #999">Lenovo Yoga</a> <a href="/tags/letter-case/" style="font-size: 14px; color: #999">Letter Case</a> <a href="/tags/linear-algebra/" style="font-size: 14px; color: #999">Linear Algebra</a> <a href="/tags/linked-list/" style="font-size: 14px; color: #999">Linked List</a> <a href="/tags/linux/" style="font-size: 20px; color: #707070">Linux</a> <a href="/tags/longest-common-subsequence/" style="font-size: 14px; color: #999">Longest Common Subsequence</a> <a href="/tags/mlpclassifier/" style="font-size: 14px; color: #999">MLPClassifier</a> <a href="/tags/merge-sort/" style="font-size: 14px; color: #999">Merge Sort</a> <a href="/tags/multilayer-perceptron/" style="font-size: 14px; color: #999">Multilayer Perceptron</a> <a href="/tags/pointer/" style="font-size: 14px; color: #999">Pointer</a> <a href="/tags/scikit-learn/" style="font-size: 14px; color: #999">Scikit-learn</a> <a href="/tags/sort/" style="font-size: 14px; color: #999">Sort</a> <a href="/tags/stack/" style="font-size: 14px; color: #999">Stack</a> <a href="/tags/uva/" style="font-size: 22px; color: #636363">UVa</a> <a href="/tags/vim/" style="font-size: 14px; color: #999">Vim</a> <a href="/tags/xor/" style="font-size: 14px; color: #999">XOR</a> <a href="/tags/yaourt/" style="font-size: 14px; color: #999">Yaourt</a>
+    </div>
+  </section>
+
+
+  
+
+  
+
+  
+    
+    
+  <section class='widget recent_comments desktop'>
+    
+  <header>
+    
+      <i class="fas fa-bookmark fa-fw" aria-hidden="true"></i><span class='name'>近期評論</span>
+    
+  </header>
+
+
+    <div class="comment pure" style="padding: 8px 16px;">
+      <script type="text/javascript" src="http://willychen99.disqus.com/recent_comments_widget.js?num_items=6&hide_avatars=0&avatar_size=32&excerpt_length=20&hide_mods=0"></script>
+    </div>
+  </section>
+
+
+  
+
+
+</aside>
+
+
+  
+  <footer class="clearfix">
+    <br><br>
+    
+      
+        <br>
+        <div class="social-wrapper">
+          
+            
+              <a href="mailto:willy@willychen.org"
+                class="social fas fa-envelope flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+            
+              <a href="https://github.com/WillyChen123"
+                class="social fab fa-github flat-btn"
+                target="_blank"
+                rel="external nofollow noopener noreferrer">
+              </a>
+            
+          
+        </div>
+      
+    
+      
+        <div class='copyright'>
+        <p>@2018-2020 By Willy Chen</p>
+
+        </div>
+      
+    
+      
+        本站使用
+        <a href="https://volantis.js.org/" target="_blank" class="codename">Volantis</a>
+        作為主題
+        
+      
+    
+  </footer>
+
+<script>setLoadingBarProgress(80);</script>
+
+
+      <script>setLoadingBarProgress(60);</script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+  </div>
+  
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.4/dist/jquery.min.js"></script>
+
+
+  <script>
+    
+    var SEARCH_SERVICE = "hexo" || "hexo";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+  </script>
+
+
+  <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/instant_page.js" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      Waves.attach('.flat-btn', ['waves-button']);
+      Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+      Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+      Waves.attach('.flat-box', ['waves-block']);
+      Waves.attach('.float-box', ['waves-block', 'waves-float']);
+      Waves.attach('.waves-image');
+      Waves.init();
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+  <script>
+    var disqus_shortname = 'willychen99';
+    
+      var disqus_url = 'http://www.willychen.org/165/install-hime-on-arch-linux/';
+    
+    (function(){
+      var dsq = document.createElement('script');
+      dsq.type = 'text/javascript';
+      dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+  </script>
+
+
+
+
+
+
+
+  
+<script src="/js/app.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2.1/js/search.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-volantis@2/js/comment_typing.js"></script>
+
+
+
+<!-- 复制 -->
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="fas fa-copy"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copyed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-clipboard-check');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPYED';
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('fa-copy');
+        $icon.addClass('fa-exclamation-triangle');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+
+
+<!-- fancybox -->
+
+  <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+  let LAZY_LOAD_IMAGE = "";
+  $(".article-entry").find("div.fancybox").find("img").each(function () {
+      var element = document.createElement("a");
+      $(element).attr("data-fancybox", "gallery");
+      $(element).attr("href", $(this).attr("src"));
+      /* 图片采用懒加载处理时,
+       * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+       * 那么此处将原本的属性名src替换为对应属性名data-original,
+       * 修改如下
+       */
+       if (LAZY_LOAD_IMAGE) {
+         $(element).attr("href", $(this).attr("data-original"));
+       }
+      $(this).wrap(element);
+  });
+</script>
+
+
+
+
+
+
+  <script>setLoadingBarProgress(100);</script>
+</body>
+</html>
