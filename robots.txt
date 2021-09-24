@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/ 
+Allow: /resources/ 
+Disallow: /privacy-policy/
+Disallow: /theme_license/
+Disallow: /302/about-privacy-policy/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+
+Sitemap: https://www.willychen.org/sitemap.xml
